@@ -8,22 +8,22 @@ function combatRun() {
 					var tempPick = getRandomInt(0, game.encounter.length);
 					game.encounter[tempPick].stats.currentHP -= Math.ceil(dmg);
 					message("Green",game.heroes[i].heroName + " hits " + game.encounter[tempPick].monsterName + (tempPick+1) + " for [" + Math.ceil(dmg) + "] points of damage!");
-					for (var i = 0; i < game.encounter.length; i++){
-						if (game.encounter[i].stats.currentHP < 1){
-							message("Yellow",game.encounter[i].monsterName + (i+1) + " has been killed!");
-							message("Yellow","Earned " + game.encounter[i].monsterEXP + " EXP!");
-							for (var j = 0; j < game.heroes.length; j++) {
-								game.heroes[j].heroEXP = game.heroes[j].heroEXP + game.encounter[i].monsterEXP;
-								document.getElementById("Hero" + j + "EXPBarID").style.width = ((game.heroes[j].heroEXP/(game.heroes[j].heroLevel*100)) * 100) + '%';
-								document.getElementById("Hero" + j + "EXPNumberID").innerHTML = "" + game.heroes[j].heroEXP + " / " + (game.heroes[j].heroLevel*100) + "";
-								if (game.heroes[j].heroEXP >= (game.heroes[j].heroLevel*100)) {
-									heroLevelUp(j);
+					for (var j = 0; j < game.encounter.length; j++){
+						if (game.encounter[j].stats.currentHP < 1){
+							message("Yellow",game.encounter[j].monsterName + (j+1) + " has been killed!");
+							message("Yellow","Earned " + game.encounter[j].monsterEXP + " EXP!");
+							for (var k = 0; k < game.heroes.length; k++) {
+								game.heroes[k].heroEXP = game.heroes[k].heroEXP + game.encounter[j].monsterEXP;
+								document.getElementById("Hero" + k + "EXPBarID").style.width = ((game.heroes[k].heroEXP/(game.heroes[k].heroLevel*100)) * 100) + '%';
+								document.getElementById("Hero" + k + "EXPNumberID").innerHTML = "" + game.heroes[k].heroEXP + " / " + (game.heroes[k].heroLevel*100) + "";
+								if (game.heroes[k].heroEXP >= (game.heroes[k].heroLevel*100)) {
+									heroLevelUp(k);
 								}
 							}
-							var tempelement = document.getElementById("Monster" + i + "TableID");
+							var tempelement = document.getElementById("Monster" + j + "TableID");
 							tempelement.outerHTML = "";
 							delete tempelement;
-							game.encounter.splice(i, 1);
+							game.encounter.splice(j, 1);
 							addMonsterToStage();
 						}
 					}
