@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>ClassGrinder</title>
+    
+	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  </head>
+
+<body>
+
+<div id="scripting">  <!--Scripts-->
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  
+<!-- Latest compiled and minified CSS -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+<link rel="stylesheet" href="css/grid.css">
+<!-- <link rel="stylesheet" href="css/bootstrap.min.css"> -->
+<link rel="stylesheet" href="css/progressbars.css">
+<link rel="stylesheet" href="css/buttons.css">
+
+
+<script src="https://use.fontawesome.com/64df9c7a34.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip(); 
+    $('[data-toggle="popover"]').popover();
+	
+});
+
+</script>
+
+<script type="text/javascript">
+
+	$(document).ready(function() {
+      windowHeight = ($(window).height());
+      $('.leftdiv').height(windowHeight);
+      $('.rightdiv').height(windowHeight);
+  });
+</script>
+</div>
+
+  <!--Main Container-->
+
+<div class="container-fluid">
+	<div class="row" style="height:vh5">
+		<div class="col-6">
+			<h5>ClassGrinder Alpha 3 20191903</h5>
+		</div>
+
+		<div class="col-6 text-right">
+			<h5><small>
+			<button id="save" type="button" class="btn btn-info btn-sm">Save</button>
+			<button id="exportSave" type="button" class="btn btn-info btn-sm">Export</button>
+			<button id="importSave" type="button" class="btn btn-info btn-sm">Import</button>
+			<button id="wipeSave" type="button" class="btn btn-info btn-sm">Wipe Save</button>
+			</small></h5>
+		</div>
+	</div>
+</div>
+
+
+
+<div class="container-fluid">
+  <div class="row">  
+		<div class="col-4 bg-secondary unitStage" id="HeroStageDiv">
+			<h2 class="text-center">Heroes<span class="badge badge-pill badge-success"><span id="partySizeSpan">0</span> / <span id="partySizeMaxSpan">1</span></span></h2>
+			<div id="HeroListDiv">
+			</div>
+		</div>
+		
+		<div class="col-8 bg-light" id="gameStageID">
+			<ul class="nav nav-tabs" role="tablist">
+				<li class="nav-item"><a class="nav-link" id="BaseTabButton" data-toggle="tab" href="#BaseTab" role="tab" aria-controls="BaseTab" aria-selected="false">Home</a></li>
+				<li class="nav-item"><a class="nav-link" id="EndlessWavesTabButton" data-toggle="tab" href="#EndlessWavesTab" role="tab" aria-controls="EndlessWavesTab" aria-selected="false">Endless Waves</a></li>
+				<li class="nav-item"><a class="nav-link" href="#QuestingTab" aria-controls="QuestingTab" role="tab" data-toggle="tab" id="QuestingTabButton">Questing</a></li>
+			</ul>
+			
+			<div class="tab-content">
+				
+				<div role="tabpanel" class="text-center tab-pane fade active" id="BaseTab">
+					<br />
+					<div class="row">
+					<div class="col-6">
+						<div class="media" id="newPlayerMediaDiv">
+							<img class="text-center" src="img/inn_outline.svg" alt="...">
+								<div class="media-body">
+								<h4 class="media-heading">Tavern</h4><button type="button" class="btn btn-default btn-block btn-sm" id="newPlayerCharacterButton">Recruit New Hero</button><small><i>This option will be disabled while at your party limit.</i></small>
+								</div>
+						</div>
+						
+						<div class="media" id="WarriorGuildMediaDiv">
+							<img class="text-center" src="img/monastery_outline.svg" alt="...">
+							<div class="media-body">
+								<h4 class="media-heading">Warrior's Guild</h4><button type="button" class="btn btn-default btn-block btn-sm" id="WarriorGuildButton">Build Warrior's Guild</button>
+							</div>
+						</div>
+						
+						<div class="media" id="blacksmithMediaDiv">
+							<img class="text-center" src="img/blacksmith_outline.svg" alt="...">
+								<div class="media-body">
+								<h4 class="media-heading">Blacksmith</h4><button type="button" class="btn btn-default btn-block btn-sm" id="blacksmithShopButton">Trade</button><small><i>Buy and sell goods with the blacksmith. Weapons and metal armor are his main wares.</i></small>
+								</div>
+						</div>
+						<br />
+					</div>
+					
+					<div class="col-6">
+						<div class="media" id="gateMediaDiv">
+						<img class="text-center" src="img/gate_outline.svg" alt="...">
+							<div class="media-body">
+							<h4 class="media-heading">Town Gate</h4><button type="button" class="btn btn-default btn-block btn-sm" id="exploreButton">Leave Town</button><small><i>Explore the world. Find new areas and embark on quests.</i></small>
+							</div>
+						</div>
+						
+						<div class="media" id="mineMediaDiv">
+						<img class="text-center" src="img/mine_outline.svg" alt="...">
+							<div class="media-body">
+							<h4 class="media-heading">Mines</h4><button type="button" class="btn btn-default btn-block btn-sm" id="exploreButton">Collect Resources</button><small><i>Collect the ores and other items found by the miners guild.</i></small><br />
+							<button type="button" class="btn btn-default btn-block btn-sm" id="hireMinerButton">Hire Miner</button><small><i>Contract a new miner from the guild. Will gather ore and sometimes other treasures.</i></small>
+							</div>
+						</div>
+					</div>
+					</div>
+				</div>
+				
+				<div role="tabpanel" class="text-center tab-pane fade active" id="EndlessWavesTab">
+				<br />
+				<div class="row">
+					<div class="col-8">
+						<div id="monsterStage">
+							<h2><b>Stage <span id="stageNumberID">1</span></b><button class="btn btn-danger" id="endlessWavesBegin">Begin</button></h2>
+						</div>
+						<div id="MonsterStageDiv">
+							
+						</div>
+					</div>
+					<div class="col-4 bg-secondary" id="consoleDivID">
+						<div style="height: 85vh; overflow-y: auto;" id="consoleID">
+						</div>
+					</div>
+				</div>
+				</div>
+				
+				
+				<div role="tabpanel" class="text-center tab-pane fade active" id="QuestingTab">
+				<br />
+				<div class="row">
+					<div class="col-8">
+						<div id="questingStage">
+							Not currently on a quest. Head back to town and pick one up!
+						</div>
+					</div>
+				</div>
+				</div>
+			
+		</div>
+		
+	</div>
+	
+  </div>
+</div>
+
+
+<div id="modal content">
+
+		<div class="modal fade" id="importModal" data-backdrop="static">
+		  <div class="modal-dialog">
+			<div class="modal-content">
+				<h3>Paste save string below.</h3><br />
+				<textarea id="importBox" class="form-control" rows="6"></textarea>
+				<button type="button" id ="importGame" class="btn btn-success btn-block btn-lg" data-dismiss="modal">Import Game</button><br /><br />
+				<button type="button" class="btn btn-danger btn-block btn-lg" data-dismiss="modal">Cancel</button><br /><br />
+			</div>
+		  </div>
+		</div>
+		
+		<div class="modal fade" id="exportModal" data-backdrop="static">
+		  <div class="modal-dialog">
+			<div class="modal-content">
+				<h3>Copy save string below.</h3><br />
+				<textarea id="exportBox" class="form-control" rows="6"></textarea>
+				<button type="button" class="btn btn-success btn-block btn-lg" data-dismiss="modal">Done!</button><br /><br />
+			</div>
+		  </div>
+		</div>
+		
+		<div class="modal fade" id="wipeModal">
+		  <div class="modal-dialog">
+			<div class="modal-content">
+				<div style="position: absolute; top: 0px; right: 0px;"><button type="button" class="btn btn-default close" data-dismiss="modal" aria-label="Close"><i class="fa fa-times text-danger" aria-hidden="true"></i></button></div>
+				<h2 class="text-danger">WARNING! This will completely wipe your save. If you are sure about this press the button below, otherwise close this window.</h3><br />
+				<button type="button" id="wipeSaveFinal" class="btn btn-warning btn-block btn-lg">DELETE!</button><br /><br />
+			</div>
+		  </div>
+		</div>
+		
+		<div class="modal fade" id="newPlayerModal" data-backdrop="static">
+		  <div class="modal-dialog">
+			<div class="modal-content">
+				<div class="text-center"><label><h3>New Hero Recruitment</h3></label></div>
+				<div class="input-group mb-3">
+				  <div class="input-group-prepend">
+					<span class="input-group-text" id="newPlayerNameDesc">Hero Name</span>
+				  </div>
+				  <input type="text" class="form-control" id="newPlayerName" aria-describedby="newPlayerNameDesc">
+				</div>
+				<div class="form-group">
+					<div class="form-check form-check-inline">
+					  <input class="form-check-input" type="radio" name="genderRadios" id="newPlayerMale" value="male" checked>
+					  <label class="form-check-label" for="newPlayerMale">
+						Male <i class='fa fa-mars'></i>
+					  </label>
+					</div>
+					<div class="form-check form-check-inline">
+					  <input class="form-check-input" type="radio" name="genderRadios" id="newPlayerFemale" value="female">
+					  <label class="form-check-label" for="newPlayerFemale">
+						Female <i class='fa fa-venus'></i>
+					  </label>
+					</div>
+					<div class="form-check form-check-inline">
+					  <input class="form-check-input" type="radio" name="genderRadios" id="newPlayerNB" value="NB">
+					  <label class="form-check-label" for="newPlayerNB">
+						Non-Binary <i class='fa fa-transgender-alt' aria-hidden='true'></i>
+					  </label>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="input-group mb-3">
+					<div class="input-group-prepend"> <span class="input-group-text" id="racePrepend">Race</span></div>
+					<select id="newPlayerRace" class="custom-select">
+						<option value="Human" selected>Human</option>
+						<option value="Elf">Elf</option>
+						<option value="Dwarf">Dwarf</option>
+						<option value="Drow">Drow</option>
+						<option value="Giant">Giant</option>
+						<option value="Troll">Troll</option>
+						<option value="Vampire">Vampire</option>
+						<option value="Wraith">Wraith</option>
+					</select>
+					</div>
+					<div class="input-group mb-3">
+					<div class="input-group-prepend"> <span class="input-group-text" id="classPrepend">Class</span></div>
+					<select id="newPlayerClass" class="custom-select">
+						<option value="Warrior" selected>Warrior</option>
+						<option value="Thief">Thief</option>
+						<option value="Cleric">Cleric</option>
+						<option value="Mage">Mage</option>
+						<option value="Monk">Monk</option>
+					</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col text-center">
+					<button id="newPlayerStatRoll" type="button" class="btn btn-success btn-lg">Roll Stats!</button>
+					</div><br/>
+					<div class="row">
+						<div class="col-4">
+							<div class="input-group mb-3">
+							<div class="input-group-prepend"><span class="input-group-text" id="strPrepend">STR</span></div>
+							<input id="newPlayerStr" class="form-control text-center" type="text" placeholder="-" readonly>
+							</div>
+						</div>
+						<div class="col-4">
+							<div class="input-group mb-3">
+							<div class="input-group-prepend"><span class="input-group-text" id="dexPrepend">DEX</span></div>
+							<input id="newPlayerDex" class="form-control text-center" type="text" placeholder="-" readonly>
+							</div>
+						</div>
+						<div class="col-4">
+							<div class="input-group mb-3">
+							<div class="input-group-prepend"><span class="input-group-text" id="conPrepend">CON</span></div>
+							<input id="newPlayerCon" class="form-control text-center" type="text" placeholder="-" readonly>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-4">
+							<div class="input-group mb-3">
+							<div class="input-group-prepend"><span class="input-group-text" id="intPrepend">INT</span></div>
+							<input id="newPlayerInt" class="form-control text-center" type="text" placeholder="-" readonly>
+							</div>
+						</div>
+						<div class="col-4">
+							<div class="input-group mb-3">
+							<div class="input-group-prepend"><span class="input-group-text" id="wisPrepend">WIS</span></div>
+							<input id="newPlayerWis" class="form-control text-center" type="text" placeholder="-" readonly>
+							</div>
+						</div>
+						<div class="col-4">
+							<div class="input-group mb-3">
+							<div class="input-group-prepend"><span class="input-group-text" id="chaPrepend">CHA</span></div>
+							<input id="newPlayerCha" class="form-control text-center" type="text" placeholder="-" readonly>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col text-center">
+					<button id="newPlayerCreateButton" type="button" class="btn btn-danger btn-lg disabled">Recruit Hero!</button>
+				</div>
+				
+			</div>
+		  </div>
+		</div>
+</div>
+
+<script src="js/lz-string.js"></script>
+<script src="js/main.js"></script>
+<script src="js/saveload.js"></script>
+<script src="js/monster.js"></script>
+<script src="js/player.js"></script>
+<script src="js/workers.js"></script>
+<script src="js/pertick.js"></script> 
+<script src="js/combat.js"></script> 
+<script src="js/UI.js"></script> 
+<!--<script src="js/onclickactions.js"></script>-->
+<script src="js/dragscroll.js"></script>
+
+<script src="js/grid.js"></script>
+
+<script> document.getElementById("BaseTabButton").click() </script>
+
+<script> window.onload = function(){load();} </script>
+
+</body>
