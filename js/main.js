@@ -13,7 +13,7 @@ function prettifySub(number){
 	number = number.toString();
 	var hasDecimal = number.split('.');
 	if (typeof hasDecimal[1] === 'undefined' || hasDecimal[0].length >= 3) return number.substring(0, 3);
-	return number.substring(0, 4);	
+	return number.substring(0, 4);
 }
 
 function update(delta) {
@@ -22,7 +22,7 @@ function update(delta) {
 	game.global.totalTime += 1;
 	game.global.combatTimer += 1;
 	updateBars();
-	
+
 	if (game.global.combatTimer >= 90){
 		combatRun();
 	}
@@ -33,7 +33,7 @@ function update(delta) {
 
 function mainLoop(timestamp) {
 
-    // Throttle the frame rate.    
+    // Throttle the frame rate.
     if (timestamp < lastFrameTimeMs + (1000 / maxFPS)) {
         requestAnimationFrame(mainLoop);
         return;
@@ -58,7 +58,7 @@ document.getElementById("endlessWavesBegin").onclick = function() {
 
 document.getElementById("save").onclick = function() {
 	save();
-	
+
 	alert(JSON.stringify(game, null, 4));
 }
 
@@ -67,13 +67,13 @@ document.getElementById("exportSave").onclick = function() {
 	for (var i = 0; i < game.heroes.length; i++){
 		console.log(game.heroes[i]);
 	}
-	
+
 }
 
 document.getElementById("importSave").onclick = function() {
 	var tempPick = getRandomInt(0, game.encounter.length);
 	game.encounter[tempPick].stats.currentHP -= 1;
-	
+
 }
 
 document.getElementById("wipeSave").onclick = function() {
@@ -83,11 +83,12 @@ document.getElementById("wipeSave").onclick = function() {
 document.getElementById("wipeSaveFinal").onclick = function() {
 	resetGame();
 	save();
-	window.location.reload(false); 
+	window.location.reload(false);
 }
 
 document.getElementById("newPlayerCharacterButton").onclick = function() {
 	$('#newPlayerModal').modal('show');
+    rollNewPlayerStats();
 }
 
 document.getElementById("newPlayerStatRoll").onclick = function() {
