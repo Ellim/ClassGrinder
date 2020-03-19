@@ -88,7 +88,7 @@ document.getElementById("wipeSaveFinal").onclick = function() {
 
 document.getElementById("newPlayerCharacterButton").onclick = function() {
 	$('#newPlayerModal').modal('show');
-
+    rollNewPlayerStats();
 }
 
 document.getElementById("newPlayerStatRoll").onclick = function() {
