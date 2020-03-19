@@ -20,7 +20,7 @@ function newGame() {
 		heroes: players,
 		encounter: monsters
 	}
-	
+
 return returnValue;
 
 };
@@ -44,12 +44,12 @@ function save(exportThis) {
 			message("For some reason, your game is not saving. Make sure you export and back up your save!");
 		}
 	}
-	catch(err){ 
+	catch(err){
 		if(e.name == "NS_ERROR_FILE_CORRUPTED") {
         message("Sorry, it looks like your browser storage has been corrupted. Please clear your storage by going to Tools -> Clear Recent History -> Cookies and set time range to 'Everything'. This will remove the corrupted browser storage across all sites.");
 		}
 		else
-		message("For some reason, your game is not saving. Make sure you export and back up your save!"); 
+		message("For some reason, your game is not saving. Make sure you export and back up your save!");
 		}
 }
 
@@ -80,7 +80,7 @@ function load(saveString) {
 
 		return;
 	}
-	
+
 	if (typeof savegame.global !== 'undefined') {
         for (var item in game.global) {
             if (item == "time" || item == "start") continue;
@@ -97,5 +97,5 @@ function load(saveString) {
 	message("White","Game Loaded!");
 	addHeroToStage();
 	addMonsterToStage();
+	rollNewPlayerStats();
 }
-
